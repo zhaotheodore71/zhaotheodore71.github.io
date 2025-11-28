@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赵疏桐 - 个人主页</title>
+    <script src="https://cdn.tailwindcss.com/3.3.3"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        }
+        
+        .section-padding {
+            padding: 120px 0;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4a5568;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 18px;
+            width: 2px;
+            height: calc(100% + 12px);
+            background-color: #e2e8f0;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e2e8f0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 4px;
+            background-color: #4a5568;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .btn-primary {
+            background-color: #4a5568;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2d3748;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 80px 0;
+            }
+            
+            .timeline-item {
+                padding-left: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav id="mainNav" class="fixed w-full py-4 px-6 z-50 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl font-semibold text-gray-800">赵疏桐</div>
+            <div class="flex items-center space-x-6">
+                <a href="#about" class="text-gray-600 hover:text-gray-900 transition-colors">关于我</a>
+                <a href="#experience" class="text-gray-600 hover:text-gray-900 transition-colors">经历</a>
+                <a href="#skills" class="text-gray-600 hover:text-gray-900 transition-colors">技能</a>
+                <a href="#portfolio" class="text-gray-600 hover:text-gray-900 transition-colors">作品</a>
+                <a href="tel:+8618741879536" class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+                    <i class="fas fa-phone-alt mr-2"></i>
+                    <span class="hidden md:inline">+86 18741879536</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 封面区 -->
+    <section id="about" class="hero-section px-6">
+        <div class="container mx-auto">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-900">你好，我叫赵疏桐</h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-600">欢迎来到我的个人主页，探索我的经历与作品</p>
+                <a href="#experience" class="btn-primary">
+                    了解更多
+                    <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 个人经历部分 -->
+    <section id="experience" class="section-padding bg-white px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">个人经历</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="timeline-item">
+                    <h3 class="text-xl font-semibold mb-2">2020 - 至今</h3>
+                    <h4 class="text-lg font-medium text-gray-700 mb-2">高级产品设计师 | 科技创新有限公司</h4>
+                    <p class="text-gray-600">负责公司核心产品的用户体验设计与产品规划，带领设计团队完成多个重要项目的设计工作，提升了产品的用户满意度和市场竞争力。</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-semibold mb-2">2017 - 2020</h3>
+                    <h4 class="text-lg font-medium text-gray-700 mb-2">产品设计师 | 互联网科技公司</h4>
+                    <p class="text-gray-600">参与移动应用和网页产品的设计工作，包括用户研究、原型设计、视觉设计和用户测试，与开发团队紧密合作，确保设计方案的有效实施。</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-semibold mb-2">2013 - 2017</h3>
+                    <h4 class="text-lg font-medium text-gray-700 mb-2">设计学学士 | 知名大学</h4>
+                    <p class="text-gray-600">主修数字媒体设计专业，学习了设计理论、用户界面设计、交互设计等课程，积极参与校园设计项目和设计竞赛，获得多项奖项。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能特长部分 -->
+    <section id="skills" class="section-padding bg-gray-50 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">技能特长</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-6">专业技能</h3>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">用户界面设计</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">交互设计</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">用户研究</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">原型设计</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-6">工具掌握</h3>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Figma</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Adobe Creative Suite</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Sketch</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Principle</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12">
+                    <h3 class="text-xl font-semibold mb-6">其他技能</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="px-4 py-2 bg-gray-200 rounded-full text-gray-700">项目管理</div>
+                        <div class="px-4 py-2 bg-gray-200 rounded-full text-gray-700">团队协作</div>
+                        <div class="px-4 py-2 bg-gray-200 rounded-full text-gray-700">演讲展示</div>
+                        <div class="px-4 py-2 bg-gray-200 rounded-full text-gray-700">问题解决</div>
+                        <div class="px-4 py-2 bg-gray-200 rounded-full text-gray-700">数据分析</div>
+                        <div class="px-4 py-2 bg-gray-200 rounded-full text-gray-700">用户测试</div>
+                        <div class="px-4 py-2 bg-gray-200 rounded-full text-gray-700">前端基础</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集部分 -->
+    <section id="portfolio" class="section-padding bg-white px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">作品集</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 作品1 -->
+                <div class="portfolio-item card-hover">
+                    <img src="https://api.dicebear.com/7.x/personas/svg?seed=project1" alt="移动应用设计项目" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-xl font-semibold mb-2">健康管理应用设计</h3>
+                        <p class="mb-4">为用户提供个性化健康管理方案的移动应用界面设计</p>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">UI设计</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">UX设计</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 作品2 -->
+                <div class="portfolio-item card-hover">
+                    <img src="https://api.dicebear.com/7.x/personas/svg?seed=project2" alt="电子商务网站设计" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-xl font-semibold mb-2">电子商务网站重设计</h3>
+                        <p class="mb-4">提升用户购物体验和转化率的电商平台界面优化项目</p>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">网页设计</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">用户研究</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 作品3 -->
+                <div class="portfolio-item card-hover">
+                    <img src="https://api.dicebear.com/7.x/personas/svg?seed=project3" alt="金融科技应用设计" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-xl font-semibold mb-2">金融科技应用设计</h3>
+                        <p class="mb-4">简化复杂金融操作的移动应用界面设计</p>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">UI设计</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">交互设计</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 作品4 -->
+                <div class="portfolio-item card-hover">
+                    <img src="https://api.dicebear.com/7.x/personas/svg?seed=project4" alt="旅行应用设计" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-xl font-semibold mb-2">旅行规划应用设计</h3>
+                        <p class="mb-4">帮助用户轻松规划旅行行程的移动应用界面设计</p>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">UI设计</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">原型设计</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 作品5 -->
+                <div class="portfolio-item card-hover">
+                    <img src="https://api.dicebear.com/7.x/personas/svg?seed=project5" alt="企业官网设计" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-xl font-semibold mb-2">企业官网设计</h3>
+                        <p class="mb-4">提升企业品牌形象的响应式网站设计</p>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">网页设计</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">响应式设计</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 作品6 -->
+                <div class="portfolio-item card-hover">
+                    <img src="https://api.dicebear.com/7.x/personas/svg?seed=project6" alt="教育平台设计" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-xl font-semibold mb-2">在线教育平台设计</h3>
+                        <p class="mb-4">提供优质学习体验的在线教育平台界面设计</p>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">UI设计</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-sm">UX设计</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-2">赵疏桐</h3>
+                    <p class="text-gray-400">产品设计师 | UI/UX设计师</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:space-x-12 space-y-4 md:space-y-0">
+                    <div>
+                        <h4 class="font-medium mb-2">联系方式</h4>
+                        <a href="tel:+8618741879536" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                            <i class="fas fa-phone-alt mr-2"></i> +86 18741879536
+                        </a>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium mb-2">快速链接</h4>
+                        <div class="flex flex-col space-y-1">
+                            <a href="#about" class="text-gray-400 hover:text-white transition-colors">关于我</a>
+                            <a href="#experience" class="text-gray-400 hover:text-white transition-colors">经历</a>
+                            <a href="#skills" class="text-gray-400 hover:text-white transition-colors">技能</a>
+                            <a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">作品</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>created by <a href="https://space.coze.cn" class="text-gray-400 hover:text-white transition-colors">coze space</a></p>
+                <p class="mt-2">页面内容均由 AI 生成，仅供参考</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 技能条动画
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-progress');
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 300);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            observer.observe(skillsSection);
+        }
+    </script>
+</body>
+</html>
