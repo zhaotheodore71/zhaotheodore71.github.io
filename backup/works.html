@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代表作品 - 赵疏桐</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 自定义配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif']
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .transition-custom {
+                transition: all 0.3s ease;
+            }
+            .hover-scale {
+                transition: transform 0.2s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light text-dark font-sans antialiased">
+    <!-- 导航栏 -->
+    <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-primary text-2xl font-bold">赵疏桐</span>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <ul class="hidden md:flex items-center space-x-8">
+                    <li><a href="." class="text-dark font-medium hover:text-secondary transition-custom">关于我</a></li>
+                    <li><a href="works" class="text-primary font-medium hover:text-secondary transition-custom">作品</a></li>
+                    <li><a href="research" class="text-dark font-medium hover:text-secondary transition-custom">研究</a></li>
+                    <li><a href="thinking" class="text-dark font-medium hover:text-secondary transition-custom">思考</a></li>
+                    <li class="text-dark">
+                        <i class="fa fa-phone mr-2"></i>联系我：+86 18741879536
+                    </li>
+                </ul>
+                
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-dark focus:outline-none">
+                        <i class="fa fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3">
+                <ul class="space-y-3">
+                    <li><a href="." class="block py-2 text-dark font-medium">关于我</a></li>
+                    <li><a href="works" class="block py-2 text-primary font-medium">作品</a></li>
+                    <li><a href="research" class="block py-2 text-dark font-medium">研究</a></li>
+                    <li><a href="thinking" class="block py-2 text-dark font-medium">思考</a></li>
+                    <li class="py-2 text-dark">
+                        <i class="fa fa-phone mr-2"></i>联系我：+86 18741879536
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 作品页面内容 -->
+    <section class="pt-32 pb-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold text-dark mb-12 text-center">
+                    代表作品
+                </h1>
+                
+                <!-- 作品过滤 -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button id="filter-digital" class="bg-primary text-white font-medium py-2 px-6 rounded-full transition-custom hover-scale" data-category="digital">
+                        数字交互类
+                    </button>
+                    <button id="filter-industrial" class="bg-white border border-gray-200 text-dark font-medium py-2 px-6 rounded-full transition-custom hover:bg-gray-50 hover-scale" data-category="industrial">
+                        工业实体类
+                    </button>
+                    <button id="filter-concept" class="bg-white border border-gray-200 text-dark font-medium py-2 px-6 rounded-full transition-custom hover:bg-gray-50 hover-scale" data-category="concept">
+                        概念设计类
+                    </button>
+                </div>
+                
+                <!-- 作品分类展示 -->
+                <!-- 数字交互类 -->
+                <div id="category-digital" class="mb-16">
+                    <h2 class="text-2xl font-bold text-dark mb-8 border-l-4 border-primary pl-4">数字交互类</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- 小布助手APP -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E5%B0%8F%E5%B8%83%E5%8A%A9%E6%89%8BAPP" alt="小布助手APP" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">小布助手APP</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">数字交互类</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 3DAI凡拓数创水库数字孪生平台标品 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E6%B0%B4%E5%BA%93%E6%95%B0%E5%AD%97%E5%87%9D%E7%94%9F%E5%B9%B3%E5%8F%B0" alt="水库数字孪生平台" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">3DAI凡拓数创水库数字孪生平台标品</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">数字交互类</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- AI手势交互系统 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=AI%E6%89%8B%E5%8A%BF%E4%BA%A4%E4%BA%92%E7%B3%BB%E7%BB%9F" alt="AI手势交互系统" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">AI手势交互系统</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">数字交互类</span>
+                                    <a href="ai-gesture-system.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 指云游APP -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E6%8C%87%E4%BA%91%E6%B8%B8APP" alt="指云游APP" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">指云游APP</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">数字交互类</span>
+                                    <a href="zhiyunyou-app.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 概念设计类 -->
+                <div id="category-concept" class="mb-16 hidden">
+                    <h2 class="text-2xl font-bold text-dark mb-8 border-l-4 border-primary pl-4">概念设计类</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- 机场摆渡助老车 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E6%9C%BA%E5%9C%BA%E6%BB%A1%E9%80%9A%E8%BD%A6" alt="机场摆渡助老车" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">机场摆渡助老车</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">概念设计类</span>
+                                    <a href="airport-shuttle.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 招聘学习与管理平台 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E6%8B%9B%E8%81%98%E5%B9%B3%E5%8F%B0" alt="招聘学习与管理平台" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">招聘学习与管理平台</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">概念设计类</span>
+                                    <a href="recruitment-platform.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- AI家庭相册 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=AI%E5%AE%B6%E5%BA%AD%E7%9B%B8%E5%86%8C" alt="AI家庭相册" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">AI家庭相册</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">概念设计类</span>
+                                    <a href="ai-family-album.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 智能化洗浴疗愈系统 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E6%B4%97%E6%B5%B4%E7%B3%96%E8%82%BF" alt="智能化洗浴疗愈系统" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">智能化洗浴疗愈系统</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">概念设计类</span>
+                                    <a href="smart-bath-system.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 手机吹气截屏 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E6%89%8B%E6%9C%BA%E6%8A%AB%E5%B1%8F" alt="手机吹气截屏" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">手机吹气截屏</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">概念设计类</span>
+                                    <a href="blow-screenshot.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 助眠投影仪 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E5%8A%A9%E7%9C%A0%E6%8A%95%E5%BD%B1%E4%BB%AA" alt="助眠投影仪" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">助眠投影仪</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">概念设计类</span>
+                                    <a href="sleep-projector.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 工业实体类 -->
+                <div id="category-industrial" class="mb-16 hidden">
+                    <h2 class="text-2xl font-bold text-dark mb-8 border-l-4 border-primary pl-4">工业实体类</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- 户外露营无烟多功能烧烤架 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E7%83%AD%E7%83%AD%E6%9E%B6" alt="户外露营无烟多功能烧烤架" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">户外露营无烟多功能烧烤架</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">工业实体类</span>
+                                    <a href="barbecue-grill.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 老年人重力自驱动座便器辅助坐/起装置 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E5%8A%A9%E8%80%81%E4%BA%BA%E5%BA%A7%E5%8F%AF%E5%9C%96" alt="老年人重力自驱动座便器辅助坐/起装置" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">老年人重力自驱动座便器辅助坐/起装置</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">工业实体类</span>
+                                    <a href="toilet-assist-device.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 儿童光影教学玩具 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E5%84%BF%E7%AB%A5%E5%85%89%E5%BD%B1%E6%8E%A7%E5%88%B6" alt="儿童光影教学玩具" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">儿童光影教学玩具</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">工业实体类</span>
+                                    <a href="light-shadow-toy.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 空间计算折叠大棚 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/400x300?text=%E6%8A%98%E5%8F%A0%E5%A4%A7%E6%A7%BD" alt="空间计算折叠大棚" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-dark mb-2">空间计算折叠大棚</h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">工业实体类</span>
+                                    <a href="folding-greenhouse.html" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <div class="mb-6 md:mb-0">
+                        <h2 class="text-2xl font-bold mb-2">赵疏桐</h2>
+                        <p class="text-white/80">产品经理，战略规划</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="border-t border-white/20 pt-8 text-center text-white/60">
+                    <p>联系电话：+86 18741879536</p>
+                    <p class="mt-2">&copy; 2024 赵疏桐. 保留所有权利。</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // 滚动时导航栏效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-3', 'shadow-md');
+                header.classList.remove('py-4', 'shadow-sm');
+            } else {
+                header.classList.add('py-4', 'shadow-sm');
+                header.classList.remove('py-3', 'shadow-md');
+            }
+        });
+        
+        // 作品分类过滤功能
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('#filter-digital, #filter-industrial, #filter-concept');
+            const categorySections = {
+                'digital': document.getElementById('category-digital'),
+                'industrial': document.getElementById('category-industrial'),
+                'concept': document.getElementById('category-concept')
+            };
+            
+            // 切换分类显示
+            function showCategory(category) {
+                // 更新按钮样式
+                filterButtons.forEach(button => {
+                    if (button.dataset.category === category) {
+                        button.classList.remove('bg-white', 'border', 'border-gray-200', 'text-dark');
+                        button.classList.add('bg-primary', 'text-white');
+                    } else {
+                        button.classList.remove('bg-primary', 'text-white');
+                        button.classList.add('bg-white', 'border', 'border-gray-200', 'text-dark');
+                    }
+                });
+                
+                // 显示对应分类内容，隐藏其他分类
+                for (const [key, section] of Object.entries(categorySections)) {
+                    if (key === category) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                }
+            }
+            
+            // 为过滤按钮添加点击事件
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    showCategory(button.dataset.category);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

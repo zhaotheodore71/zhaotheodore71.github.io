@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究 - 赵疏桐</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 自定义配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif']
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .transition-custom {
+                transition: all 0.3s ease;
+            }
+            .hover-scale {
+                transition: transform 0.2s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+            .research-card {
+                transition: all 0.3s ease;
+            }
+            .research-card:hover {
+                border-color: #3b82f6;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light text-dark font-sans antialiased">
+    <!-- 导航栏 -->
+    <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-primary text-2xl font-bold">赵疏桐</span>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <ul class="hidden md:flex items-center space-x-8">
+                    <li><a href="." class="text-dark font-medium hover:text-secondary transition-custom">关于我</a></li>
+                    <li><a href="works" class="text-dark font-medium hover:text-secondary transition-custom">作品</a></li>
+                    <li><a href="research" class="text-primary font-medium hover:text-secondary transition-custom">研究</a></li>
+                    <li><a href="thinking" class="text-dark font-medium hover:text-secondary transition-custom">思考</a></li>
+                    <li class="text-dark">
+                        <i class="fa fa-phone mr-2"></i>联系我：+86 18741879536
+                    </li>
+                </ul>
+                
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-dark focus:outline-none">
+                        <i class="fa fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3">
+                <ul class="space-y-3">
+                    <li><a href="." class="block py-2 text-dark font-medium">关于我</a></li>
+                    <li><a href="works" class="block py-2 text-dark font-medium">作品</a></li>
+                    <li><a href="research" class="block py-2 text-primary font-medium">研究</a></li>
+                    <li><a href="thinking" class="block py-2 text-dark font-medium">思考</a></li>
+                    <li class="py-2 text-dark">
+                        <i class="fa fa-phone mr-2"></i>联系我：+86 18741879536
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 研究页面内容 -->
+    <section class="pt-32 pb-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold text-dark mb-12 text-center">
+                    我的研究
+                </h1>
+                
+                <!-- 研究类别 -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="bg-primary text-white font-medium py-2 px-6 rounded-full transition-custom hover-scale">
+                        所有研究
+                    </button>
+                    <button class="bg-white border border-gray-200 text-dark font-medium py-2 px-6 rounded-full transition-custom hover:bg-gray-50 hover-scale">
+                        AI研究
+                    </button>
+                    <button class="bg-white border border-gray-200 text-dark font-medium py-2 px-6 rounded-full transition-custom hover:bg-gray-50 hover-scale">
+                        人机交互
+                    </button>
+                    <button class="bg-white border border-gray-200 text-dark font-medium py-2 px-6 rounded-full transition-custom hover:bg-gray-50 hover-scale">
+                        医疗健康
+                    </button>
+                    <button class="bg-white border border-gray-200 text-dark font-medium py-2 px-6 rounded-full transition-custom hover:bg-gray-50 hover-scale">
+                        社交创新
+                    </button>
+                </div>
+                
+                <!-- 研究内容列表 -->
+                <div class="space-y-8">
+                    <!-- 研究项目1 -->
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden research-card">
+                        <div class="p-6 md:p-8">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-primary text-xs font-medium px-3 py-1 rounded-full">AI模型</span>
+                                <span class="bg-blue-100 text-primary text-xs font-medium px-3 py-1 rounded-full">自适应控制</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1 rounded-full">华南理工大学</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-dark mb-3">AI模型自适应控制研究</h3>
+                            <p class="text-gray-700 mb-6">
+                                研究AI模型的自适应控制机制，优化模型性能，使其能够根据不同场景和用户需求自动调整参数。探索模型在各种复杂环境下的稳定性和精确度提升方法，为对话式AI系统提供更智能的调控策略。
+                            </p>
+                            <div class="flex flex-wrap justify-between items-center">
+                                <div class="text-gray-500 text-sm">
+                                    <i class="fa fa-calendar mr-1"></i> 2023 - 2024
+                                </div>
+                                <a href="#" class="text-secondary font-medium hover:text-primary transition-custom">
+                                    查看研究详情 <i class="fa fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究项目2 -->
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden research-card">
+                        <div class="p-6 md:p-8">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-primary text-xs font-medium px-3 py-1 rounded-full">计算机视觉</span>
+                                <span class="bg-blue-100 text-primary text-xs font-medium px-3 py-1 rounded-full">图像识别</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1 rounded-full">华南理工大学</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-dark mb-3">计算机视觉与图像处理研究</h3>
+                            <p class="text-gray-700 mb-6">
+                                研究计算机视觉技术在实际应用中的优化与创新，包括图像识别、特征提取和场景理解等方向。探索计算机视觉在医疗健康、工业设计等领域的交叉应用，提升AI系统对视觉信息的理解和处理能力。
+                            </p>
+                            <div class="flex flex-wrap justify-between items-center">
+                                <div class="text-gray-500 text-sm">
+                                    <i class="fa fa-calendar mr-1"></i> 2023 - 2025
+                                </div>
+                                <a href="#" class="text-secondary font-medium hover:text-primary transition-custom">
+                                    查看研究详情 <i class="fa fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究项目3 -->
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden research-card">
+                        <div class="p-6 md:p-8">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-primary text-xs font-medium px-3 py-1 rounded-full">对话式AI</span>
+                                <span class="bg-blue-100 text-primary text-xs font-medium px-3 py-1 rounded-full">参数调控</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1 rounded-full">华南理工大学</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-dark mb-3">对话式AI参数调控研究</h3>
+                            <p class="text-gray-700 mb-6">
+                                深入研究对话式AI系统的参数调控机制，优化对话质量和用户体验。探索不同参数设置对AI回复风格、准确性和实用性的影响，建立更高效的参数优化方法，使AI系统能够更好地理解和响应用户意图。
+                            </p>
+                            <div class="flex flex-wrap justify-between items-center">
+                                <div class="text-gray-500 text-sm">
+                                    <i class="fa fa-calendar mr-1"></i> 2024 - 2025
+                                </div>
+                                <a href="#" class="text-secondary font-medium hover:text-primary transition-custom">
+                                    查看研究详情 <i class="fa fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究项目4 -->
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden research-card">
+                        <div class="p-6 md:p-8">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">医疗健康</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">老年人研究</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1 rounded-full">北大核心期刊</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-dark mb-3">城市社区老年人纯音听阈测试与特征分析</h3>
+                            <p class="text-gray-700 mb-6">
+                                发表于北大核心医院期刊的研究论文，对城市社区老年人进行纯音听阈测试，分析其听力特征和影响因素。研究为老年人听力健康评估和干预提供了科学依据，同时探讨了AI技术在听力障碍早期筛查中的应用潜力。
+                            </p>
+                            <div class="flex flex-wrap justify-between items-center">
+                                <div class="text-gray-500 text-sm">
+                                    <i class="fa fa-calendar mr-1"></i> 2022 - 2023
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <a href="#" class="text-secondary font-medium hover:text-primary transition-custom">
+                                        查看论文 <i class="fa fa-file-text-o ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究项目5 -->
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden research-card">
+                        <div class="p-6 md:p-8">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">社交创新</span>
+                                <span class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">游戏化策略</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1 rounded-full">东北大学</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-dark mb-3">社交创新玩法与游戏化策略研究</h3>
+                            <p class="text-gray-700 mb-6">
+                                研究社交产品中的创新玩法和游戏化设计策略，探索如何通过游戏化机制增强用户参与度和社交粘性。结合心理学和行为经济学理论，设计更具吸引力的社交互动模式，为社交类产品提供创新思路和实施方案。
+                            </p>
+                            <div class="flex flex-wrap justify-between items-center">
+                                <div class="text-gray-500 text-sm">
+                                    <i class="fa fa-calendar mr-1"></i> 2019 - 2022
+                                </div>
+                                <a href="#" class="text-secondary font-medium hover:text-primary transition-custom">
+                                    查看研究详情 <i class="fa fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <div class="mb-6 md:mb-0">
+                        <h2 class="text-2xl font-bold mb-2">赵疏桐</h2>
+                        <p class="text-white/80">产品经理，战略规划</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="border-t border-white/20 pt-8 text-center text-white/60">
+                    <p>联系电话：+86 18741879536</p>
+                    <p class="mt-2">&copy; 2024 赵疏桐. 保留所有权利。</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // 滚动时导航栏效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-3', 'shadow-md');
+                header.classList.remove('py-4', 'shadow-sm');
+            } else {
+                header.classList.add('py-4', 'shadow-sm');
+                header.classList.remove('py-3', 'shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>

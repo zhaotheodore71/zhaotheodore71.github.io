@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指云游APP - 赵疏桐</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 自定义配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif']
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .transition-custom {
+                transition: all 0.3s ease;
+            }
+            .hover-scale {
+                transition: transform 0.2s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <a href="index.html" class="text-xl md:text-2xl font-bold text-primary">
+                    赵疏桐
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-dark hover:text-primary transition-custom">首页</a>
+                    <a href="about.html" class="text-dark hover:text-primary transition-custom">关于</a>
+                    <a href="works.html" class="text-primary font-medium">作品</a>
+                    <a href="contact.html" class="text-dark hover:text-primary transition-custom">联系</a>
+                </nav>
+                <button class="md:hidden text-dark text-xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 作品详情内容 -->
+    <section class="pt-32 pb-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <a href="works.html" class="inline-flex items-center text-secondary mb-8">
+                    <i class="fa fa-arrow-left mr-2"></i> 返回作品列表
+                </a>
+                
+                <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold text-dark mb-6">
+                    指云游APP
+                </h1>
+                
+                <div class="mb-8">
+                    <span class="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-4 py-1 rounded-full">
+                        数字交互类
+                    </span>
+                </div>
+                
+                <!-- 项目内容区域（待补充） -->
+                <div class="bg-gray-50 p-8 rounded-xl border border-gray-100">
+                    <p class="text-gray-600">该项目详情内容待补充...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <div class="mb-6 md:mb-0">
+                        <h2 class="text-2xl font-bold mb-2">赵疏桐</h2>
+                        <p class="text-white/80">产品经理，战略规划</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="border-t border-white/20 pt-8 text-center text-white/60">
+                    <p>联系电话：+86 18741879536</p>
+                    <p class="mt-2">&copy; 2024 赵疏桐. 保留所有权利。</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

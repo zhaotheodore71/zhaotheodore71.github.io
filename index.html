@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赵疏桐 - 产品经理，战略规划</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 自定义配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif']
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .transition-custom {
+                transition: all 0.3s ease;
+            }
+            .hover-scale {
+                transition: transform 0.2s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+            .card-hover {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px -10px rgba(30, 58, 138, 0.15);
+            }
+            .bg-gradient-primary {
+                background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            }
+            .btn-gradient {
+                background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+                transition: all 0.3s ease;
+            }
+            .btn-gradient:hover {
+                background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.4);
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.6s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .section-padding {
+                padding-top: clamp(3rem, 10vh, 5rem);
+                padding-bottom: clamp(3rem, 10vh, 5rem);
+            }
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                background-image: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light text-dark font-sans antialiased">
+    <!-- 导航栏 -->
+    <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-500">
+        <div class="container mx-auto px-4 md:px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-primary text-2xl font-bold">赵疏桐</span>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <ul class="hidden md:flex items-center space-x-8">
+                    <li><a href="." class="text-primary font-medium hover:text-secondary transition-custom">关于我</a></li>
+                    <li><a href="works" class="text-dark font-medium hover:text-secondary transition-custom">作品</a></li>
+                    <li><a href="research" class="text-dark font-medium hover:text-secondary transition-custom">研究</a></li>
+                    <li><a href="thinking" class="text-dark font-medium hover:text-secondary transition-custom">思考</a></li>
+                    <li class="text-dark">
+                        <i class="fa fa-phone mr-2"></i>联系我：+86 18741879536
+                    </li>
+                </ul>
+                
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-dark focus:outline-none">
+                        <i class="fa fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3">
+                <ul class="space-y-3">
+                    <li><a href="." class="block py-2 text-primary font-medium">关于我</a></li>
+                    <li><a href="works" class="block py-2 text-dark font-medium">作品</a></li>
+                    <li><a href="research" class="block py-2 text-dark font-medium">研究</a></li>
+                    <li><a href="thinking" class="block py-2 text-dark font-medium">思考</a></li>
+                    <li class="py-2 text-dark">
+                        <i class="fa fa-phone mr-2"></i>联系我：+86 18741879536
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 封面区域 -->
+    <section id="hero" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-blue-50 to-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                    <!-- 个人照片 -->
+                    <div class="flex-shrink-0 w-48 h-48 md:w-64 md:h-64">
+                        <img src="images/photo.png" alt="赵疏桐" class="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl transform hover:scale-105 transition-all duration-300"/>
+                    </div>
+                    
+                    <!-- 文本内容 -->
+                    <div class="text-center md:text-left">
+                        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-dark leading-tight mb-4">
+                            你好，我叫赵疏桐
+                        </h1>
+                        <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-dark/80 mb-8 max-w-xl mx-auto md:mx-0">
+                            长远思考，保持乐观，往前跑
+                        </p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                            <a href="#about" class="btn-gradient text-white font-medium py-3 px-8 rounded-lg shadow-lg hover-scale animate-fade-in">
+                                了解更多
+                            </a>
+                            <a href="works" class="bg-white hover:bg-gray-50 text-primary font-medium border border-primary py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-custom hover-scale animate-fade-in" style="animation-delay: 0.1s">
+                                查看作品
+                            </a>
+                            <a href="research" class="bg-white hover:bg-gray-50 text-primary font-medium border border-primary py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-custom hover-scale animate-fade-in" style="animation-delay: 0.2s">
+                                查看研究
+                            </a>
+                            <a href="thinking" class="bg-white hover:bg-gray-50 text-primary font-medium border border-primary py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-custom hover-scale animate-fade-in" style="animation-delay: 0.3s">
+                                创意思考
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+     <section id="about" class="py-20 bg-white">
+         <div class="container mx-auto px-4 md:px-6">
+             <div class="max-w-5xl mx-auto animate-fade-in">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-12 text-center">
+                    关于我
+                </h2>
+                
+                <!-- 个人经历 -->
+                <div class="mb-20">
+                    <h3 class="text-2xl font-bold text-primary mb-8 text-center">个人经历</h3>
+                    
+                    <!-- 个人基本信息 -->
+                    <div class="bg-white rounded-xl shadow-lg p-8 mb-10 border border-gray-100 card-hover">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <div class="font-semibold text-gray-600 mb-2">姓名</div>
+                                <div class="text-dark font-medium text-lg">赵疏桐</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-600 mb-2">出生日期</div>
+                                <div class="text-dark font-medium text-lg">1999年6月2日</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-600 mb-2">籍贯</div>
+                                <div class="text-dark font-medium text-lg">辽宁阜新</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 经历卡片组 -->
+                    <div class="space-y-6">
+                        <!-- 硕士经历 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-gradient-primary p-4 text-white">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="text-xl font-bold">华南理工大学 | 工业设计工程 | 硕士</h4>
+                                    <span class="bg-white/20 px-4 py-1 rounded-full text-sm font-medium">2023.09 - 2026.06</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-gray-700 mb-4">设计人因与技术研究室，师从姜立军教授、李哲林教授</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary mb-2">研究方向</h5>
+                                        <p class="text-gray-700">AI模型自适应控制、计算机视觉、对话式AI参数调控</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary mb-2">学术成果</h5>
+                                        <p class="text-gray-700">1.发表论文一篇：《城市社区老年人纯音听阈测试与特征分析》（临床医学方向，北大核心期刊）</p>
+                                        <p class="text-gray-700">2.研发算法一套：AI语音在波动噪音下自适应老年人听力算法</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- 研究生阶段获奖经历 -->
+                                <div class="mt-4">
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary mb-2">获奖经历</h5>
+                                        <div class="space-y-3">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-700">2024第三届HKDADC香港数字艺术设计大赛 全国三等奖</span>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2025.03.20</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-700">第十六届国际用户体验创新大赛UXDA 全国三等奖</span>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2024.12.30</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-700">第五届“芯创杯”未来汽车人机交互设计大赛 全国三等奖</span>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2024.09.20</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-700">第四届“芯创杯”未来汽车人机交互设计大赛 全国三等奖</span>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2023.09.20</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 研究生阶段实习经历 -->
+                                <div class="mt-4">
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary mb-2">实习经历</h5>
+                                        <div class="space-y-4">
+                                            <!-- OPPO实习 -->
+                                            <div>
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <span class="font-medium text-gray-800">OPPO广东移动通信有限公司</span>
+                                                    <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2025.06-2025.09</span>
+                                                </div>
+                                                <div class="text-blue-600 text-sm mb-2">AI产品经理实习生</div>
+                                                <ul class="text-gray-700 text-sm space-y-1 pl-5 list-disc">
+                                                    <li>小布旅游搭子：在小布对话中引入旅游搭子模块，从用户“旅行灵感+行程规划+行中边玩边问”提供全链路AI服务。</li>
+                                                    <li>小布对话+AI主动问：以“用户表现+产品现状+竞品分析+头部模型策略拆解"构建以模型驱动的AI主动问及AI订阅策略。</li>
+                                                    <li>小布个性化记忆及识屏垂直领域场景优化：找到营销驱动及数据驱动的高频高价值话题感场景，对垂直场景做策略优化。</li>
+                                                    <li>小布深度思考功能优化：结合线下用研报告+线上报表数据，分析“深度思考"功能用户使用表现，构建此功能优化策略。</li>
+                                                    <li>小布对话图文推荐卡混排策略：从内容类型、用户意图、对话历史三维度构建出图出卡及混排策略，体验满意度提升27%。</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <!-- 凡拓数字实习 -->
+                                            <div>
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <span class="font-medium text-gray-800">广州凡拓数字创意科技股份有限公司</span>
+                                                    <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2024.06-2024.09</span>
+                                                </div>
+                                                <div class="text-blue-600 text-sm mb-2">AI产品经理实习生</div>
+                                                <ul class="text-gray-700 text-sm space-y-1 pl-5 list-disc">
+                                                    <li>水利行业AI3D数字孪生平台标品构建：搭建以"AI监控+AI预测分析+AI3D数字人"为核心优势的水利业务数字孪生平台。</li>
+                                                    <li>数字孪生引入AI3D数字人策略构建：简化数字人开发流程，增加其多模态交互，增强数字人业务层功能及可视化表现。</li>
+                                                    <li>江南西街道地图可视化项目：构建综合"二三维地图+AR地图+卫星地图"的数字孪生平台，并完成投标书产品方案部分。</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        
+                        <!-- 工作经历 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-gradient-primary p-4 text-white">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="text-xl font-bold">沈阳市匠新科技有限责任公司 | 设计总监（创业）</h4>
+                                    <span class="bg-white/20 px-4 py-1 rounded-full text-sm font-medium">2021.10 - 2023.08</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-gray-700 mb-4">设计外包公司，本人负责公司设计战略与客户项目管理，公司平均客户续单率高达90%，在项目管理过程中引入“双钻模型”与敏捷设计流程，项目平均交付周期较同行缩短20%。通过建立严格的质量评审与标准化的设计组件库，确保所有交付物的一致性与高品质，项目一次性验收通过率超过95%。</p>
+                                <div class="space-y-3">
+                                    <div class="flex items-start">
+                                        <div class="bg-primary text-white p-1 rounded-full mr-3 mt-1">
+                                            <i class="fa fa-briefcase text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-dark">核心职责</h5>
+                                            <p class="text-gray-700">客户沟通、需求分析、方案制定、商业与营销模式规划</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="bg-primary text-white p-1 rounded-full mr-3 mt-1">
+                                            <i class="fa fa-lightbulb-o text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-dark">创新成果</h5>
+                                            <p class="text-gray-700">已授权第一作者实用新型专利：《一种光影玩具》、《一种户外拼插组装式无烟烧烤架》</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="bg-primary text-white p-1 rounded-full mr-3 mt-1">
+                                            <i class="fa fa-rocket text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-dark">项目成果</h5>
+                                            <p class="text-gray-700">落地产品近百件，如《指云游》APP和和微信小程序（张家界AR文旅）、《良渚古城AR漫游》微信小程序、西西弗斯社交网站、户外露营无烟多功能烧烤架、老年人重力自驱动座便器辅助坐/起装置、儿童光影教学玩具、东北大学录取通知书礼盒等</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 本科经历 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="bg-gradient-primary p-4 text-white">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="text-xl font-bold">东北大学 | 工业设计 | 本科</h4>
+                                    <span class="bg-white/20 px-4 py-1 rounded-full text-sm font-medium">2018.09 - 2022.07</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-gray-700 mb-4">科艺空间研究室，师从杨松老师</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary mb-2">研究方向</h5>
+                                        <p class="text-gray-700">社交创新玩法、游戏化策略、结构设计、CMF设计</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary mb-2">产品方向</h5>
+                                        <p class="text-gray-700">儿童玩具、健康类产品、社交类产品</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- 本科阶段获奖经历 -->
+                                <div class="mt-4">
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary mb-2">获奖经历</h5>
+                                        <div class="space-y-3">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-700">大学生创新创业训练计划 全国三等奖</span>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2022.03.20</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-700">中国TRIZ杯创新方法大赛 全国一等奖</span>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2021.10.25</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-700">全国大学生节能减排大赛 全国三等奖</span>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2021.11.20</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-700">全国大学生数字艺术大赛 辽宁省三等奖</span>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2021.10.20</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-700">全国大学生广告艺术大赛 辽宁省三等奖</span>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2021.09.20</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 
+                                <!-- 本科阶段实习经历 -->
+                                <div class="mt-4">
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary mb-2">实习经历</h5>
+                                        
+                                        <!-- 沈阳红松信息科技 -->
+                                        <div class="mb-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <h6 class="font-medium text-gray-800">沈阳红松信息科技有限公司</h6>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2021.03-2021.09</span>
+                                            </div>
+                                            <p class="text-sm text-purple-700 mb-2">互联网产品经理实习生</p>
+                                            <ul class="text-gray-700 space-y-2 text-sm">
+                                                <li>社交互动功能设计：从0到1设计匿名树洞功能，采用"UGC+轻社交"模式，上线3周DAU提升15%，人均停留时长提升4min。</li>
+                                                <li>兴趣匹配功能迭代：优化"协同过滤+标签匹配"算法策略，小规模MVP测试筛选高互动率引导话术，会话发起率提升29%。</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <!-- 北京学而思 -->
+                                        <div>
+                                            <div class="flex justify-between items-center mb-2">
+                                                <h6 class="font-medium text-gray-800">北京学而思网络科技有限公司</h6>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">2019.03-2019.07</span>
+                                            </div>
+                                            <p class="text-sm text-purple-700 mb-2">部门负责人实习生</p>
+                                            <ul class="text-gray-700 space-y-2 text-sm">
+                                                <li>营销宣传与运营：持续跟进每月宣传工作，策划营销爆款方案调研投流策略，端午节策划一短视频方案浏览量达100万＋。</li>
+                                                <li>与高校谈合作、招新、管理：与3所211高校谈成合作，每周招新、管理、组织开会与疑难解答，第一周有效招新147人。</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>   
+                
+                  <!-- 个人总结 -->
+                  <div class="mt-12 mb-20">
+                    <h3 class="text-2xl font-bold text-primary mb-8 text-center">个人总结</h3>
+                    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                        <!-- AI产品化与用户体验 -->
+                        <div class="mb-10">
+                            <h4 class="text-xl font-semibold text-primary mb-4">AI产品化与用户体验</h4>
+                            <div class="pl-4 border-l-4 border-primary/30">
+                                <p class="text-dark leading-relaxed mb-4">
+                                    具备全面的AI产品知识体系，深谙NLP、CV与多模态等AI能力的产品化路径与应用场景设计，同时兼具敏锐的用户洞察能力与商业敏感度。
+                                </p>
+                                <p class="text-dark leading-relaxed mb-4">
+                                    持续跟踪AI前沿发展，定期研读AI、商业与产品体验领域的学术论文，积极实践并总结各类AI产品的用户体验特点。
+                                </p>
+                                <p class="text-dark leading-relaxed">
+                                    擅长构建"用户研究+数据驱动"的产品策略模型，通过用户数据分析挖掘场景需求，以AI模型能力为核心驱动力，有效推动AI功能在垂直领域的落地应用。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 内容创作与知识分享 -->
+                        <div>
+                            <h4 class="text-xl font-semibold text-primary mb-4">内容创作与知识分享</h4>
+                            <div class="pl-4 border-l-4 border-primary/30 mb-6">
+                                <p class="text-dark leading-relaxed mb-4">
+                                     知识储备多元且全面，广泛涉猎心理学、营销学、广告学等跨学科领域。
+                                  </p>
+                                  <p class="text-dark leading-relaxed mb-4">    
+                                     在小红书、抖音、视频号、公众号四大平台运营不同类型内容账号，数据表现卓越，播放量、互动率与粉丝增长等关键指标上均超越 98%+ 的同类创作者。
+                                  </p>
+                                <p class="text-dark leading-relaxed mt-3">
+                                    代表作品多条内容获近600万播放量，个人被视频号官方认证为生活领域优质创作者。
+                                </p>
+                            </div>
+                            
+                            <!-- 内容平台分布 -->
+                            <div class="bg-blue-50 rounded-lg p-6">
+                                <h5 class="font-medium text-primary mb-4">内容平台账号分布</h5>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="flex items-center">
+                                        <i class="fa fa-video-camera text-primary text-xl mr-3"></i>
+                                        <div>
+                                            <div class="font-medium text-dark">抖音</div>
+                                            <div class="text-sm text-gray-600">糊涂老妈和我（搞笑类）、每周深度思考（知识类）</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fa fa-play-circle text-primary text-xl mr-3"></i>
+                                        <div>
+                                            <div class="font-medium text-dark">视频号</div>
+                                            <div class="text-sm text-gray-600">糊涂老妈和我（生活类）</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fa fa-book text-primary text-xl mr-3"></i>
+                                        <div>
+                                            <div class="font-medium text-dark">小红书</div>
+                                            <div class="text-sm text-gray-600">男性综合指南（健康类）</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fa fa-commenting text-primary text-xl mr-3"></i>
+                                        <div>
+                                            <div class="font-medium text-dark">公众号</div>
+                                            <div class="text-sm text-gray-600">产品积累（知识类）</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <div class="mb-6 md:mb-0">
+                        <h2 class="text-2xl font-bold mb-2">赵疏桐</h2>
+                        <p class="text-white/80">产品经理，战略规划师</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent text-xl transition-custom">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="border-t border-white/20 pt-8 text-center text-white/60">
+                    <p>联系电话：+86 18741879536</p>
+                    <p class="mt-2">&copy; 2025 赵疏桐. 保留所有权利。</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // 滚动时导航栏效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-3', 'shadow-md');
+                header.classList.remove('py-4', 'shadow-sm');
+            } else {
+                header.classList.add('py-4', 'shadow-sm');
+                header.classList.remove('py-3', 'shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
